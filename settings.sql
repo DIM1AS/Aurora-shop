@@ -4,3 +4,17 @@ CREATE TABLE users (
     email VARCHAR(50) NOT NULL UNIQUE,
     password VARCHAR(255) NOT NULL
 )
+CREATE TABLE products (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  name VARCHAR(255) NOT NULL,
+  description TEXT NOT NULL,
+  price DECIMAL(10, 2) NOT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE TABLE cart (
+  id INT(11) NOT NULL AUTO_INCREMENT,
+  product_id INT(11) NOT NULL,
+  quantity INT(11) NOT NULL DEFAULT '1',
+  PRIMARY KEY (id)
+);
