@@ -1,0 +1,55 @@
+/* Установка стилей для всего документа */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Установка стилей для тела документа */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* Установка стилей для контейнера */
+.container {
+  max-width: 800px;
+  margin: 50px auto;
+  padding: 30px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+}
+
+/* Установка стилей для заголовка */
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Установка стилей для текста */
+p {
+  font-size: 16px;
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+/* Установка стилей для кнопки выхода */
+a.button {
+  display: inline-block;
+  background-color: #4CAF50;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+a.button:hover {
+  background-color: #3e8e41;
+}
