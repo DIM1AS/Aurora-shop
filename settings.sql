@@ -18,3 +18,6 @@ CREATE TABLE cart (
   quantity INT(11) NOT NULL DEFAULT '1',
   PRIMARY KEY (id)
 );
+
+
+-- что то 
