@@ -47,7 +47,7 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" href="../../assets/css/register.css">
 
 
-    <title> Регистрация | Aurora Shop </title>
+    <title> Регистрация | HYDRA 3.0 </title>
 
 </head>
 

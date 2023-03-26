@@ -12,7 +12,7 @@
 	<!-- Обертка для элементов -->
 	<div class="container">
 		<!-- Фотография -->
-		<img src="assets\img\index\1.jpg" alt="Фото">
+		<img src="assets\img\index\1.jpg" alt="Гидра">
 
 		<!-- Форма с кнопками -->
 		<form>

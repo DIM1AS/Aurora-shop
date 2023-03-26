@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Мар 26 2023 г., 00:54
+-- Время создания: Мар 26 2023 г., 10:54
 -- Версия сервера: 5.7.20
 -- Версия PHP: 5.5.38
 
@@ -52,8 +52,14 @@ CREATE TABLE `products` (
 --
 
 INSERT INTO `products` (`id`, `name`, `description`, `price`) VALUES
-(1, 'test', 'test', '1.00'),
-(2, 'test 2 ', 'test 2 ', '5.00');
+(1, 'Кепка', 'test', '551.00'),
+(2, 'Книга', 'test 2 ', '639.20'),
+(3, 'Кольцо', '1', '137.00'),
+(4, 'Наушники', '1', '654.00'),
+(7, 'Серьги ', '1', '999.10'),
+(8, 'Грибочки', '1', '124.00'),
+(11, 'Крым кола', '1', '199.99'),
+(12, 'Квас', '2', '160.00');
 
 -- --------------------------------------------------------
 
@@ -113,7 +119,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

@@ -1,20 +1,34 @@
+<?php
+// Проверяем, авторизован ли пользователь
+session_start();
+
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корзина товаров</title>
+    <title> Корзина товаров | HYDRA 3.0 </title>
     <link rel="stylesheet" href="../../assets/css/cart.css">
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <h1>Корзина товаров</h1>
-            <div>
-                <a href="profile.php" class="cart-btn">Назад</a>                                
-            </div>
-        </div>
+    <div class="header">            
+  <h1>Корзина товаров</h1>
+  <div>
+    <a href="profile.php" class="cart-btn" style="text-decoration:none;">Назад</a>                                
+  </div>
+</div>
+
         <?php
+
+          
+
             // Подключаемся к базе данных
             $mysqli = new mysqli("localhost", "root", "", "Aurora_Shop");
 
@@ -39,7 +53,7 @@
                     echo "<td><button type='submit' name='buy' value='" . $row["id"] . "' class='add-to-cart-btn'>Купить</button></td>";
                     echo "</tr>";
                 }
-                echo "<tr><td colspan=\"3\">Итого:</td><td>" . $total_price . "</td></tr>";
+                echo "<tr><td colspan=\"3\">Итого:</td><td>" . $total_price .  " ₽ </td></tr>";
                 echo "</table>";
                 echo "</form>";
                 echo "<p><a href=\"clear_cart.php\" class=\"clear-cart-link\">Очистить корзину</a></p>";
