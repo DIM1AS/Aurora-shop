@@ -39,7 +39,7 @@ if (isset($_POST['delete_account'])) {
 }
 
 // Закрываем соединение с базой данных
-$mysqli->close();
+$mysqli->close();   
 ?>
 
 <!DOCTYPE html>
@@ -47,85 +47,31 @@ $mysqli->close();
 <head>
     <meta charset="UTF-8">
     <title>Мой профиль | GameEvo</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            padding: 20px;
-        }
-
-        h1 {
-            color: #333333;
-        }
-
-        p {
-            margin-bottom: 10px;
-        }
-
-        form {
-            margin-top: 20px;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="password"] {
-            padding: 5px;
-            width: 200px;
-            margin-bottom: 10px;
-        }
-
-        button {
-            padding: 8px 12px;
-            background-color: #4CAF50;
-            color: #ffffff;
-            border: none;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #45a049;
-        }
-
-        .confirm-message {
-            color: #ff0000;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-    </style>
-    <script>
-        function goBack() {
-            window.history.back();
-        }
-    </script>
+    <link rel="stylesheet" href="../../assets/css/my_profile.css">
+    <script src="../../assets/js/my_profile.js"></script>
 </head>
 <body>
 <h1>Мой профиль</h1>
 <p>Имя: <?php echo $user_name; ?></p>
 <p>Почта: <?php echo $user_email; ?></p>
-<form method="POST" action="change_password.php">
-    <label for="current_password">Текущий пароль:</label>
-    <input type="password" id="current_password" name="current_password" required><br>
-    <label for="new_password">Новый пароль:</label>
-    <input type="password" id="new_password" name="new_password" required><br>
-    <button type="submit" name="change_password">Изменить пароль</button>
+<form method="POST" action="../../assets/pages/profile.php">
+    <button type="submit" name="up">Назад</button>
+</form> 
+
+<form method="POST" action="../../assets/pages/change_password.php">
+    <button type="submit" name="reset">Изменить пароль</button>
 </form>
-<button onclick="goBack()">Назад</button>
 
 <form method="POST" action="">
-    
     <button type="submit" name="delete_account">Удалить учетную запись</button>
 </form>
 
 <?php if (isset($confirm_message) && $show_confirm_form): ?>
     <form method="POST" action="">
-    <p><?php echo $confirm_message; ?></p>
-    <button type="submit" name="confirm_delete">Да, удалить</button>
-    <button type="submit" name="cancel_delete">Отмена</button>
-</form>
+        <p><?php echo $confirm_message; ?></p>
+        <button type="submit" name="confirm_delete">Да, удалить</button>
+        <button type="submit" name="cancel_delete">Отмена</button>
+    </form>
 <?php endif; ?>
 
 </body>

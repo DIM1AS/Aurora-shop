@@ -8,20 +8,9 @@ if (!isset($_SESSION['user_id'])) {
 include('../../assets/pages/db_connect.php');
 $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
 
-// Добавление товара в корзину
-if (isset($_POST['buy'])) {
-    $user_id = $_SESSION['user_id'];
-    $product_id = $_POST['buy'];
-    $result = $mysqli->query("SELECT * FROM cart WHERE user_id = $user_id AND product_id = $product_id");
-    if ($result->num_rows > 0) {
-        $mysqli->query("UPDATE cart SET quantity = quantity + 1 WHERE user_id = $user_id AND product_id = $product_id");
-    } else {
-        $mysqli->query("INSERT INTO cart (user_id, product_id, quantity) VALUES ($user_id, $product_id, 1)");
-    }
-}
-
-// Вывод корзины
 $user_id = $_SESSION['user_id'];
+
+// Получение списка товаров в корзине пользователя
 $result = $mysqli->query("SELECT products.*, cart.quantity FROM products INNER JOIN cart ON products.id = cart.product_id WHERE cart.user_id = $user_id");
 
 ?>
@@ -43,39 +32,42 @@ $result = $mysqli->query("SELECT products.*, cart.quantity FROM products INNER J
                 <a href="../../assets/pages/profile.php" class="cart-btn" style="text-decoration:none;">Назад</a>
             </div>
         </div>
-        <?php
-    // Вывод корзины
-    $result = $mysqli->query("SELECT products.*, cart.quantity FROM products INNER JOIN cart ON products.id = cart.product_id WHERE cart.user_id = $user_id");
+        <?php if ($result->num_rows > 0): ?>
+            <form method="post" action="delete_product.php">
+                <table>
+                    <tr>
+                        <th>Название товара</th>
+                        <th>Количество</th>
+                        <th>Цена</th>
+                        <th></th>
+                    </tr>
+                    <?php
+                    $total_price = 0;
+                    while ($row = $result->fetch_assoc()) {
+                        $product_id = $row["product_id"];
+                        $quantity = $row["quantity"];
+                        $price = $row["price"];
+                        $total = $quantity * $price;
+                        $total_price += $total;
+                        echo "<tr>";
+                        echo "<td>" . $row["name"] . "</td>";
+                        echo "<td>" . $quantity . "</td>";
+                        echo "<td>" . $price . "</td>";
+                        echo "<td><button type='submit' name='delete' value='" . $product_id . "' class='delete-product-btn'>Удалить товар</button></td>";
+                        echo "</tr>";
+                    }
+                    ?>
+                    <tr>
+                        <td colspan="3">Итого:</td>
+                        <td><?php echo $total_price; ?> ₽</td>
+                    </tr>
+                </table>
+            </form>
+            <p><a href="clear_cart.php" class="clear-cart-link">Очистить корзину</a></p>
+        <?php else: ?>
+            <p>Корзина пуста.</p>
+        <?php endif; ?>
 
-    if ($result->num_rows > 0) {
-        echo "<form method='post' action='buy_all.php'>";
-        echo "<table>";
-        echo "<tr><th>Название товара</th><th>Количество</th><th>Цена</th><th></th></tr>";
-        $total_price = 0;
-        while ($row = $result->fetch_assoc()) {
-            $quantity = $row["quantity"];
-            $price = $row["price"];
-            $total = $quantity * $price;
-            $total_price += $total;
-            echo "<tr>";
-            echo "<td>" . $row["name"] . "</td>";
-            echo "<td>" . $quantity . "</td>";
-            echo "<td>" . $price . "</td>";
-            echo "<td><button type='submit' name='buy' value='" . $row["id"] . "' class='add-to-cart-btn'>Купить</button></td>";
-            echo "</tr>";
-        }
-        echo "<tr><td colspan=\"3\">Итого:</td><td>" . $total_price .  " ₽ </td></tr>";
-        echo "</table>";
-        echo "</form>";
-        echo "<p><a href=\"clear_cart.php\" class=\"clear-cart-link\">Очистить корзину</a></p>";
-    } else {
-        echo "<p>Корзина пуста.</p>";
-    }
-
-    $mysqli->close();
-    ?>
-
-
-</div>
+    </div>
 </body>
 </html>
