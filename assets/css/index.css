@@ -1,5 +1,5 @@
-/* Центрируем элементы по горизонтали и вертикали */
-body {
+ /* Центрируем элементы по горизонтали и вертикали */
+ body {
     display: flex;
     align-items: center;
     justify-content: center;
