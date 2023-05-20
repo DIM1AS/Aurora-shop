@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../../assets/pages/login.php');
     exit();
 }
 
@@ -30,7 +30,7 @@ if (isset($_POST['change_password'])) {
 
         // Перенаправляем пользователя на страницу профиля с сообщением об успешном изменении пароля
         $_SESSION['password_changed'] = true;
-        header("Location: profile.php");
+        header("Location: ../../assets/pages/profile.php");
         exit();
     } else {
         // Текущий пароль неверный, выводим сообщение об ошибке
@@ -44,27 +44,27 @@ $mysqli->close();
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Изменение пароля | GameEvo</title>
-    <link rel="stylesheet" href="../../assets/css/my_profile.css">
+    <title> Изменение пароля | GameEvo </title>
+    <link rel="stylesheet" href="../../assets/css/change_password.css">
+    <!-- <script src="../../assets/js/current_password.js"></script> -->
 </head>
+
 <body>
-<h1>Изменение пароля</h1>
-<form method="POST" action="">
-    <label for="current_password">Текущий пароль:</label>
-    <input type="password" id="current_password" name="current_password" required><br>
-    <label for="new_password">Новый пароль:</label>
-    <input type="password" id="new_password" name="new_password" required><br>
-    <?php if (isset($error_message)): ?>
-        <p class="error-message"><?php echo $error_message; ?></p>
-    <?php endif; ?>
-    <button type="submit" name="change_password">Изменить пароль</button>
-</form>
-<form method="POST" action="../../assets/pages/my_profile.php">
-    <button type="submit" name="reset">Назад</button>
-</form>
+    <h1>Изменение пароля</h1>
+    <form method="POST" action="">
+        <label for="current_password">Текущий пароль:</label>
+        <input type="password" id="current_password" name="current_password" required><br>
+        <label for="new_password">Новый пароль:</label>
+        <input type="password" id="new_password" name="new_password" required><br>
+        <?php if (isset($error_message)) : ?>
+            <p class="error-message"><?php echo $error_message; ?></p>
+        <?php endif; ?>
+        <button type="submit" name="change_password">Изменить пароль</button>
+        <a class="profile-btn" href="../../assets/pages/my_profile.php">Назад</a>
+    </form>  
 </body>
+
 </html>
-
-

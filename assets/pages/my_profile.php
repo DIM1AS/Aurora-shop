@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../../assets/pages/login.php');
     exit();
 }
 
@@ -30,49 +30,55 @@ if (isset($_POST['delete_account'])) {
     // Очищаем сессию и перенаправляем пользователя на страницу входа
     session_unset();
     session_destroy();
-    header("Location: login.php");
+    header("Location: ../../assets/pages/login.php");
     exit();
 } elseif (isset($_POST['cancel_delete'])) {
     // Пользователь отменил удаление, перенаправляем на страницу профиля
-    header("Location: profile.php");
+    header("Location: ../../assets/pages/profile.php");
     exit();
 }
 
 // Закрываем соединение с базой данных
-$mysqli->close();   
+$mysqli->close();
 ?>
 
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
-    <title>Мой профиль | GameEvo</title>
+    <title> Мой профиль | GameEvo </title>
     <link rel="stylesheet" href="../../assets/css/my_profile.css">
     <script src="../../assets/js/my_profile.js"></script>
 </head>
+
 <body>
-<h1>Мой профиль</h1>
-<p>Имя: <?php echo $user_name; ?></p>
-<p>Почта: <?php echo $user_email; ?></p>
-<form method="POST" action="../../assets/pages/profile.php">
-    <button type="submit" name="up">Назад</button>
-</form> 
+    <div class="x">
+        <h1>Мой профиль</h1>
+        <p>Имя: <?php echo $user_name; ?></p>
+        <p>Почта: <?php echo $user_email; ?></p>
+        <form method="POST" action="../../assets/pages/profile.php">
+            <button type="submit" name="up">Назад</button>
+        </form>
 
-<form method="POST" action="../../assets/pages/change_password.php">
-    <button type="submit" name="reset">Изменить пароль</button>
-</form>
+        <form method="POST" action="../../assets/pages/change_password.php">
+            <button type="submit" name="reset">Изменить пароль</button>
+        </form>
 
-<form method="POST" action="">
-    <button type="submit" name="delete_account">Удалить учетную запись</button>
-</form>
+        <form method="POST" action="">
+            <button type="submit" name="delete_account">Удалить учетную запись</button>
+        </form>
 
-<?php if (isset($confirm_message) && $show_confirm_form): ?>
-    <form method="POST" action="">
-        <p><?php echo $confirm_message; ?></p>
-        <button type="submit" name="confirm_delete">Да, удалить</button>
-        <button type="submit" name="cancel_delete">Отмена</button>
-    </form>
-<?php endif; ?>
+        <?php if (isset($confirm_message) && $show_confirm_form) : ?>
+            <form method="POST" action="">
+                <p><?php echo $confirm_message; ?></p>
+                <button type="submit" name="confirm_delete">Да, удалить</button>
+                <button type="submit" name="cancel_delete">Отмена</button>
+            </form>
+        <?php endif; ?>
+    </div>
+
 
 </body>
+
 </html>

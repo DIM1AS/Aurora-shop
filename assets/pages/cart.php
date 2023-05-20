@@ -3,7 +3,7 @@
 session_start();
 
 if (!isset($_SESSION['user_id'])) {
-    header('Location: login.php');
+    header('Location: ../../assets/pages/login.php');
     exit();
 }
 
@@ -29,7 +29,7 @@ if (isset($_POST['clear'])) {
     $user_id = $_SESSION['user_id'];
     $mysqli->query("DELETE FROM cart WHERE user_id = $user_id");
     $mysqli->close();
-    header("Location: cart.php"); // Перенаправляем пользователя на страницу корзины после очистки
+    header("Location: ../../assets/pages/cart.php"); // Перенаправляем пользователя на страницу корзины после очистки
     exit();
 }
 
@@ -41,7 +41,7 @@ if (isset($_POST['clear'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корзина товаров | GameEvo</title>
+    <title> Корзина товаров | GameEvo </title>
     <link rel="stylesheet" href="../../assets/css/cart.css">
 </head>
 
@@ -50,7 +50,7 @@ if (isset($_POST['clear'])) {
         <div class="header">
             <h1>Корзина товаров</h1>
             <div>
-                <a href="profile.php" class="cart-btn" style="text-decoration:none;">Назад</a>
+                <a href="../../assets/pages/profile.php" class="cart-btn_1" style="text-decoration:none;">Назад</a>
             </div>
         </div>
 
@@ -68,7 +68,7 @@ if (isset($_POST['clear'])) {
 
         // Если есть товары в корзине, выводим их
         if ($result->num_rows > 0) {
-            echo "<form method='post' action='buy_all.php'>";
+            echo "<form method='post' action='../../assets/pages/buy_all.php'>";
             echo "<table>";
             echo "<tr><th>Название товара</th><th>Количество</th><th>Цена</th><th></th></tr>";
             $total_price = 0;
@@ -81,13 +81,13 @@ if (isset($_POST['clear'])) {
                 echo "<td>" . $row["name"] . "</td>";
                 echo "<td>" . $quantity . "</td>";
                 echo "<td>" . $price . "</td>";
-                echo "<td><a href='remove_product.php?id=" . $row["id"] . "' class='delete-product-btn'>Удалить товар</a></td>";
+                echo "<td><a href='../../assets/pages/remove_product.php?id=" . $row["id"] . "' class='delete-product-btn'>Удалить товар</a></td>";
                 echo "</tr>";
             }
             echo "<tr><td colspan=\"3\">Итого:</td><td>" . $total_price .  " ₽ </td></tr>";
             echo "</table>";
             echo "</form>";
-            echo "<form method='post' action='cart.php'>";
+            echo "<form method='post' action='../../assets/pages/cart.php'>";
             echo "<button type='submit' name='clear' class='clear-cart-btn'>Очистить корзину</button>";
             echo "<button type='submit' name='buy' class='buy-product-btn'>Купить</button>";
             echo "</form>";

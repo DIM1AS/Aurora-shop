@@ -4,7 +4,7 @@ if (!isset($_SESSION['user_id'])) {
     header('Location: ../../assets/pages/login.php');
     exit();
 }
-?>  
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -24,10 +24,10 @@ if (!isset($_SESSION['user_id'])) {
             <h1>Каталог | GameEvo</h1>
             <a class="cart-btn" href="../../assets/pages/cart.php">Корзина</a>
             <a class="profile-btn" href="../../assets/pages/my_profile.php">Мой профиль</a>
-            <a class="logout-btn" href="../../assets/pages/logout.php">Выйти</a>           
+            <a class="logout-btn" href="../../assets/pages/logout.php">Выйти</a>
         </div>
 
-        <div class="product-list">  
+        <div class="product-list">
             <?php
             // Подключаемся к базе данных
             include('../../assets/pages/db_connect.php');
@@ -47,7 +47,7 @@ if (!isset($_SESSION['user_id'])) {
                     echo '<div class="product-price">' . $row["price"] . ' ₽</div>';
                     echo '<a class="buy-btn" href="../../assets/pages/add_to_cart.php?id=' . $row["id"] . '">Добавить в корзину</a>';
                     echo '</div>';
-                    echo '</div>';                    
+                    echo '</div>';
                 }
             } else {
                 echo "Товаров не найдено.";
