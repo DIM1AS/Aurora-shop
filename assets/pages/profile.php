@@ -32,6 +32,7 @@ if (!isset($_SESSION['user_id'])) {
             // Подключаемся к базе данных
             include('../../assets/pages/db_connect.php');
             $mysqli = new mysqli($db_host, $db_user, $db_password, $db_name);
+            $mysqli->set_charset("utf8");
             // Выбираем все товары из таблицы          
             $result = $mysqli->query("SELECT * FROM products");
 
