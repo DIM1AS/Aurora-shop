@@ -1,69 +1,56 @@
- /* Центрируем элементы по горизонтали и вертикали */
- body {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     min-height: 100vh;
-     margin: 0;
-     padding: 0;
- }
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
 
- /* Стили для обертки */
- .container {
-     display: flex;
-     align-items: center;
-     justify-content: center;
-     flex-direction: column;
- }
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
 
- /* Стили для фотографии */
- img {
-     max-width: 50%;
-     max-height: 50%;
-     margin-bottom: 10%;
- }
+img {
+    max-width: 50%;
+    max-height: 50%;
+    margin-bottom: 10%;
+}
 
- /* Стили для ссылок-кнопок */
- a.button {
-     background-color: #4CAF50;
-     /* Зеленый цвет фона */
-     color: white;
-     /* Белый цвет текста */
-     padding: 14px 20px;
-     margin: 8px 0;
-     border: none;
-     border-radius: 4px;
-     cursor: pointer;
-     font-size: 20px;
-     text-decoration: none;
- }
+a.button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 20px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: bold;
+}
 
- /* Стили для кнопки "Войти" */
- #login {
-     position: relative;
-     top: -130px;
-     left: 0px;
- }
+#login {
+    position: relative;
+    top: -130px;
+    left: -10px;
+}
 
- /* Стили для кнопки "Зарегистрироваться" */
- #register {
+#register {
     position: relative;
     top: -130px;
     left: 0px;
- }
+}
 
- /* Адаптация для мобильных устройств */
- @media screen and (max-width: 600px) {
-     body {
-         padding: 20px;
-     }
+#login:hover {
+    background-color: #368c3a;
+}
 
-     img {
-         max-width: 100%;
-         max-height: 100%;
-     }
-
-     a.button {
-         font-size: 16px;
-     }
- }
+#register:hover {
+    background-color: #368c3a;
+}
