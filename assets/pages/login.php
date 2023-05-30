@@ -7,6 +7,10 @@ if (!$conn) {
     die('Ошибка подключения: ' . mysqli_connect_error());
 }
 
+error_reporting(0);
+ini_set('display_errors', 0);
+
+
 // Обработка данных формы авторизации при отправке
 if (isset($_POST['submit'])) {
     // Получение данных из формы авторизации
